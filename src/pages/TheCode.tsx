@@ -1,6 +1,14 @@
+import { motion } from 'framer-motion';
+
 const TheCode = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+    >
       <div className="mb-12 border-b border-white/10 pb-8">
         <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4">Policies <span className="text-gray-600 font-normal"> // The Code</span></h1>
         <p className="font-mono text-gray-400">Legislative drafts and active voting for the Federation. Powered by Quadratic Voting.</p>
@@ -12,7 +20,13 @@ const TheCode = () => {
           { status: 'Drafting', title: 'Open Source Initiative Funding', votes: 0 },
           { status: 'Passed', title: 'Federation Charter v1.2', votes: 4502 }
         ].map((policy, i) => (
-          <div key={i} className="bg-white/5 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/10 transition-colors">
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 * i, duration: 0.5 }}
+            className="bg-white/5 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/10 transition-colors"
+          >
             <div className="flex-grow">
               <div className="flex items-center gap-3 mb-2">
                 <span className={`w-2 h-2 rounded-full ${
@@ -30,14 +44,14 @@ const TheCode = () => {
                 <div className="font-mono text-xl">{policy.votes}</div>
                 <div className="font-mono text-xs text-gray-500 uppercase">Power</div>
               </div>
-              <button aria-label={`View or vote on ${policy.title}`} className="flex-grow md:flex-grow-0 px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF]/20 text-[#7100FF] border border-[#7100FF]/30 font-mono uppercase tracking-widest text-xs transition-colors">
+              <button aria-label={`View or vote on ${policy.title}`} className="flex-grow md:flex-grow-0 px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF]/20 text-[#7100FF] border border-[#7100FF]/30 font-mono uppercase tracking-widest text-xs transition-colors cursor-pointer">
                 View / Vote
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
