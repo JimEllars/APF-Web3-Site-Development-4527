@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-federation-purple: #7100FF;
+  --color-federation-black: #050505;
+  --color-federation-white: #FAFAFA;
+  --color-federation-emerald: #10B981;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: var(--color-federation-black);
+  color: var(--color-federation-white);
+  font-family: var(--font-sans);
+}
