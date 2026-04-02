@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { ConnectButton, useActiveAccount } from 'thirdweb/react';
 import { client } from '../lib/thirdwebClient';
 import { useState } from 'react';
+import { setDoc } from 'firebase/firestore';
+import { paths } from '../lib/firebase';
 
 const MusterRoll = () => {
   const account = useActiveAccount();
@@ -9,11 +11,21 @@ const MusterRoll = () => {
   const [ens, setEns] = useState('');
   const [isEnlisted, setIsEnlisted] = useState(false);
 
-  const handleEnlist = (e: React.FormEvent) => {
+  const handleEnlist = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (alias) {
-      setIsEnlisted(true);
-      // Here we would typically write to the decentralized registry via Firebase
+    if (alias && account) {
+      try {
+        await setDoc(paths.user(account.address).profile, {
+          alias,
+          ens_name: ens,
+          wallet_address: account.address,
+          enlistment_date: new Date().toISOString(),
+          rank: 'Initiate'
+        });
+        setIsEnlisted(true);
+      } catch (error) {
+        console.error("Transmission Failed: Error writing to registry.", error);
+      }
     }
   };
 

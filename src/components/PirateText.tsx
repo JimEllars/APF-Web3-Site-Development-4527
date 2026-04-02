@@ -6,12 +6,10 @@ interface PirateTextProps {
 
 export const PirateText: React.FC<PirateTextProps> = ({ className = '' }) => {
   return (
-    <span className={`inline-flex items-center ${className}`}>
-      P
-      <span className="relative inline-block w-[0.4em] mx-[0.05em]">
-        <span className="absolute -inset-y-1 left-0 skew-x-[15deg] text-[#7100FF]">I</span>
+    <span className={`inline-flex items-center ${className}`} aria-label="Pirate">
+      <span aria-hidden="true">
+        P<span className="text-[#7100FF] inline-block skew-x-[-15deg] font-black mx-[1px]">I</span>RATE
       </span>
-      RATE
     </span>
   );
 };
