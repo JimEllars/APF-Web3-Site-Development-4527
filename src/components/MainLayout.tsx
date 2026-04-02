@@ -22,17 +22,17 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#7100FF] selection:text-white">
+    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#7100FF] selection:text-white flex flex-col w-full max-w-[100vw] overflow-x-hidden">
       {/* Scanline Overlay */}
-      <div className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-30 mix-blend-overlay"
+      <div className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.3] mix-blend-overlay"
            style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5) 51%)', backgroundSize: '100% 4px' }} />
 
       {/* Navigation */}
-      <nav className="border-b border-white/10 bg-[#050505]/80 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+      <nav className="border-b border-white/10 bg-[#050505]/80 backdrop-blur-md sticky top-0 z-40 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex justify-between h-16 w-full">
             <div className="flex items-center">
-              <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
+              <Link to="/" className="flex-shrink-0 flex items-center gap-2 group" aria-label="Go to The Bridge (Home)">
                 <span className="text-2xl font-black tracking-tighter uppercase">
                   APF
                   <span className="text-[#7100FF] ml-1 group-hover:animate-pulse">_</span>
@@ -46,6 +46,7 @@ const MainLayout = () => {
                 <Link
                   key={item.name}
                   to={item.href}
+                  aria-label={`Navigate to ${item.name}`}
                   className={`${
                     isActive(item.href)
                       ? 'text-[#7100FF] border-b-2 border-[#7100FF]'
@@ -61,10 +62,11 @@ const MainLayout = () => {
             <div className="flex items-center md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-expanded={isMobileMenuOpen}
+                aria-label="Toggle navigation menu"
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#7100FF]"
               >
-                <span className="sr-only">Open main menu</span>
-                {isMobileMenuOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+                {isMobileMenuOpen ? <X className="block h-6 w-6" aria-hidden="true" /> : <Menu className="block h-6 w-6" aria-hidden="true" />}
               </button>
             </div>
           </div>
@@ -79,6 +81,7 @@ const MainLayout = () => {
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label={`Navigate to ${item.name}`}
                   className={`${
                     isActive(item.href)
                       ? 'bg-[#7100FF]/10 text-[#7100FF] border-l-4 border-[#7100FF]'
@@ -94,13 +97,13 @@ const MainLayout = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="relative">
+      <main className="relative flex-grow w-full max-w-[100vw] overflow-x-hidden">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 mt-auto py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <footer className="border-t border-white/10 mt-auto py-8 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               <span className="text-xl font-black tracking-tighter uppercase text-white/50">APF</span>
