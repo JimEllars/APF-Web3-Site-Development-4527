@@ -1,6 +1,6 @@
 import { createThirdwebClient } from "thirdweb";
 
-const clientId = "970a74f9e555feb21effca9b1f78559c";
+const clientId = "239d158df9793ba7bf562a26d3286f1f";
 
 export const client = createThirdwebClient({
   clientId: clientId,
