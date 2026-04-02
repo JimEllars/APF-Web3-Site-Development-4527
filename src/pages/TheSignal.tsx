@@ -1,6 +1,14 @@
+import { motion } from 'framer-motion';
+
 const TheSignal = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+    >
       <div className="mb-12 border-b border-white/10 pb-8">
         <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4">Podcast <span className="text-gray-600 font-normal"> // The Signal</span></h1>
         <p className="font-mono text-gray-400">Audio transmissions from the Federation.</p>
@@ -29,19 +37,26 @@ const TheSignal = () => {
 
         <h3 className="font-mono text-xl text-gray-300 uppercase tracking-widest mb-6">Archives</h3>
         <div className="space-y-4">
-          {[1, 2, 3].map((i) => (
-            <button key={i} aria-label={`Play Episode ${42 - i}: Data is Labor`} className="w-full text-left flex items-center gap-4 p-4 border border-white/10 hover:bg-white/5 transition-colors cursor-pointer group focus:outline-none focus:border-[#7100FF]">
+          {[1, 2, 3].map((i, index) => (
+            <motion.button
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
+              aria-label={`Play Episode ${42 - i}: Data is Labor`}
+              className="w-full text-left flex items-center gap-4 p-4 border border-white/10 hover:bg-white/5 transition-colors cursor-pointer group focus:outline-none focus:border-[#7100FF]"
+            >
               <span className="text-gray-500 font-mono text-sm group-hover:text-[#7100FF] transition-colors" aria-hidden="true">►</span>
               <div className="flex-grow">
                 <h4 className="font-bold group-hover:text-[#7100FF] transition-colors">Episode {42 - i}: Data is Labor</h4>
                 <p className="text-gray-500 font-mono text-xs">Aired: {i} weeks ago</p>
               </div>
               <span className="font-mono text-sm text-gray-400">45:00</span>
-            </button>
+            </motion.button>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

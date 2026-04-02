@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { PirateText } from './PirateText';
 
 const MainLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -109,8 +110,8 @@ const MainLayout = () => {
               <span className="text-xl font-black tracking-tighter uppercase text-white/50">APF</span>
               <span className="text-sm font-mono text-white/30">v1.0.0</span>
             </div>
-            <p className="text-xs font-mono text-white/40 uppercase tracking-widest text-center">
-              American Pirate Foundation &copy; {new Date().getFullYear()} // Sovereign Data
+            <p className="text-xs font-mono text-white/40 uppercase tracking-widest text-center flex items-center justify-center gap-1">
+              American <PirateText /> Foundation &copy; {new Date().getFullYear()} // Sovereign Data
             </p>
           </div>
         </div>
