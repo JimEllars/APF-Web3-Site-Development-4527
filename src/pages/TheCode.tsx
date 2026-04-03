@@ -41,11 +41,11 @@ const TheCode = () => {
 
             <div className="flex items-center gap-6 w-full md:w-auto border-t md:border-t-0 border-white/10 pt-4 md:pt-0">
               <div className="text-center">
-                <div className="font-mono text-xl">{policy.votes}</div>
-                <div className="font-mono text-xs text-gray-500 uppercase">Power</div>
+                <div className="font-mono text-xl text-[#7100FF]">{policy.votes}</div>
+                <div className="font-mono text-xs text-gray-500 uppercase">Power (QV)</div>
               </div>
-              <button aria-label={`View or vote on ${policy.title}`} className="flex-grow md:flex-grow-0 px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF]/20 text-[#7100FF] border border-[#7100FF]/30 font-mono uppercase tracking-widest text-xs transition-colors cursor-pointer">
-                View / Vote
+              <button aria-label={`View or vote on ${policy.title}`} className="flex-grow md:flex-grow-0 px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF]/20 text-[#7100FF] border border-[#7100FF]/30 font-mono uppercase tracking-widest text-xs transition-colors cursor-pointer whitespace-nowrap">
+                {policy.status === 'Active' ? 'Cast Vote' : 'View Detail'}
               </button>
             </div>
           </motion.div>
