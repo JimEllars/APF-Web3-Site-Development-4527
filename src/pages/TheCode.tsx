@@ -25,26 +25,29 @@ const TheCode = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 * i, duration: 0.5 }}
-            className="bg-white/5 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/10 transition-colors"
+            className="group relative bg-white/5 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/10 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_30px_rgba(113,0,255,0.15)] overflow-hidden"
           >
-            <div className="flex-grow">
+            {/* Subtle glow effect behind item on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#7100FF]/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
+
+            <div className="flex-grow relative z-10">
               <div className="flex items-center gap-3 mb-2">
                 <span className={`w-2 h-2 rounded-full ${
                   policy.status === 'Active' ? 'bg-[#10B981] animate-pulse' :
                   policy.status === 'Passed' ? 'bg-[#7100FF]' : 'bg-yellow-500'
                 }`} aria-hidden="true" />
-                <span className="font-mono text-xs uppercase tracking-widest text-gray-400">{policy.status}</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-gray-400 group-hover:text-gray-300 transition-colors">{policy.status}</span>
               </div>
-              <h2 className="text-xl md:text-2xl font-bold">{policy.title}</h2>
+              <h2 className="text-xl md:text-2xl font-bold group-hover:text-[#7100FF] transition-colors duration-300">{policy.title}</h2>
               <p className="text-gray-400 font-mono text-sm mt-2">Proposal ID: APF-2026-{100 + i}</p>
             </div>
 
-            <div className="flex items-center gap-6 w-full md:w-auto border-t md:border-t-0 border-white/10 pt-4 md:pt-0">
-              <div className="text-center">
+            <div className="flex items-center gap-6 w-full md:w-auto border-t md:border-t-0 border-white/10 pt-4 md:pt-0 relative z-10 justify-between md:justify-end">
+              <div className="text-left md:text-center">
                 <div className="font-mono text-xl text-[#7100FF]">{policy.votes}</div>
                 <div className="font-mono text-xs text-gray-500 uppercase">Power (QV)</div>
               </div>
-              <button aria-label={`View or vote on ${policy.title}`} className="flex-grow md:flex-grow-0 px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF]/20 text-[#7100FF] border border-[#7100FF]/30 font-mono uppercase tracking-widest text-xs transition-colors cursor-pointer whitespace-nowrap">
+              <button aria-label={`View or vote on ${policy.title}`} className="px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF] text-[#7100FF] hover:text-white border border-[#7100FF]/30 hover:border-[#7100FF] font-mono uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer whitespace-nowrap">
                 {policy.status === 'Active' ? 'Cast Vote' : 'View Detail'}
               </button>
             </div>

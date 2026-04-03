@@ -44,14 +44,17 @@ const TheSignal = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
               aria-label={`Play Episode ${42 - i}: Data is Labor`}
-              className="w-full text-left flex items-center gap-4 p-4 border border-white/10 hover:bg-white/5 transition-colors cursor-pointer group focus:outline-none focus:border-[#7100FF]"
+              className="w-full text-left flex items-center gap-4 p-4 border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-300 cursor-pointer group focus:outline-none focus:border-[#7100FF] relative overflow-hidden"
             >
-              <span className="text-gray-500 font-mono text-sm group-hover:text-[#7100FF] transition-colors" aria-hidden="true">►</span>
-              <div className="flex-grow">
-                <h4 className="font-bold group-hover:text-[#7100FF] transition-colors">Episode {42 - i}: Data is Labor</h4>
-                <p className="text-gray-500 font-mono text-xs">Aired: {i} weeks ago</p>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#7100FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <div className="w-10 h-10 rounded-full bg-white/5 group-hover:bg-[#7100FF]/20 flex items-center justify-center transition-colors border border-white/10 group-hover:border-[#7100FF]/50 relative z-10">
+                <span className="text-gray-500 font-mono text-sm group-hover:text-[#7100FF] transition-colors ml-1" aria-hidden="true">►</span>
               </div>
-              <span className="font-mono text-sm text-gray-400">45:00</span>
+              <div className="flex-grow relative z-10">
+                <h4 className="font-bold group-hover:text-[#7100FF] transition-colors text-lg">Episode {42 - i}: Data is Labor</h4>
+                <p className="text-gray-500 group-hover:text-gray-400 font-mono text-xs transition-colors mt-1">Aired: {i} weeks ago</p>
+              </div>
+              <span className="font-mono text-sm text-gray-400 group-hover:text-white transition-colors relative z-10 bg-white/5 px-2 py-1 border border-white/10">45:00</span>
             </motion.button>
           ))}
         </div>

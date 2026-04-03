@@ -17,12 +17,14 @@ import { Firestore } from 'firebase/firestore';
 
 // Initialize Firebase - wrap in try/catch to not crash if dummy keys are used or blocked by adblockers in dev
 let app;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: Firestore | any;
 try {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
 } catch (e) {
   console.error("Firebase initialization failed. Using mock instance for development.", e);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   db = {} as any; // Mock db
 }
 
