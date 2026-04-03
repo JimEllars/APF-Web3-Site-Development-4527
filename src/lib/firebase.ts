@@ -13,11 +13,20 @@ const firebaseConfig = {
   appId: "1:123456789012:web:1234567890abcdef123456"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+import { Firestore } from 'firebase/firestore';
 
-// Initialize Firestore
-export const db = getFirestore(app);
+// Initialize Firebase - wrap in try/catch to not crash if dummy keys are used or blocked by adblockers in dev
+let app;
+let db: Firestore | any;
+try {
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+} catch (e) {
+  console.error("Firebase initialization failed. Using mock instance for development.", e);
+  db = {} as any; // Mock db
+}
+
+export { db };
 
 // Data Architecture References (as per APF Backend Context)
 export const paths = {
