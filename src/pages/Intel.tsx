@@ -49,7 +49,7 @@ const Intel = () => {
       <div className="mb-12 border-b border-white/10 pb-8 flex justify-between items-end flex-wrap gap-4">
         <div>
           <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4 flex flex-wrap items-center gap-4">
-            <PirateText /> News <span className="text-gray-600 font-normal whitespace-nowrap"> // Intel</span>
+          <PirateText /> News <span className="text-gray-600 font-normal whitespace-nowrap"> // Intel</span>
           </h1>
           <p className="font-mono text-gray-400">Decentralized transmissions from the fleet.</p>
         </div>
@@ -65,6 +65,7 @@ const Intel = () => {
             key={index}
             variants={itemVariants}
             className="bg-[#050505] border border-white/10 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.15)] hover:bg-white/5 transition-all duration-300 p-6 flex flex-col h-full group relative overflow-hidden"
+            aria-label={`News article: ${item.title}`}
           >
             {/* Subtle glow effect behind item on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#7100FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
