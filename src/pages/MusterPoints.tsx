@@ -43,17 +43,18 @@ const MusterPoints = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
-            className="border border-white/10 p-6 flex flex-col sm:flex-row gap-6 hover:border-white/30 transition-colors"
+            className="group relative bg-white/5 border border-white/10 p-6 flex flex-col sm:flex-row gap-6 hover:border-white/30 hover:shadow-[0_0_20px_rgba(113,0,255,0.1)] transition-all duration-300 overflow-hidden"
           >
-            <div className="bg-[#7100FF]/10 text-[#7100FF] w-20 h-20 flex flex-col items-center justify-center flex-shrink-0 border border-[#7100FF]/20" aria-hidden="true">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#7100FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="bg-[#7100FF]/10 text-[#7100FF] w-20 h-20 flex flex-col items-center justify-center flex-shrink-0 border border-[#7100FF]/20 group-hover:border-[#7100FF]/50 group-hover:bg-[#7100FF]/20 transition-colors relative z-10" aria-hidden="true">
               <span className="font-bold text-xl">APR</span>
               <span className="font-mono">{10 + i}</span>
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Cascadia Guild Assembly</h3>
-              <p className="text-gray-400 font-mono text-sm mb-4">Sector 4 // Seattle, WA</p>
-              <button aria-label="View Details for Cascadia Guild Assembly" className="text-sm font-mono text-[#7100FF] uppercase tracking-widest hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
-                View Details <span aria-hidden="true">-&gt;</span>
+            <div className="relative z-10 flex flex-col justify-center">
+              <h3 className="text-xl font-bold mb-2 group-hover:text-[#7100FF] transition-colors">Cascadia Guild Assembly</h3>
+              <p className="text-gray-400 group-hover:text-gray-300 font-mono text-sm mb-4 transition-colors">Sector 4 // Seattle, WA</p>
+              <button aria-label="View Details for Cascadia Guild Assembly" className="text-sm font-mono text-[#7100FF] uppercase tracking-widest hover:text-white transition-colors flex items-center gap-1 cursor-pointer w-fit">
+                View Details <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">-&gt;</span>
               </button>
             </div>
           </motion.div>

@@ -51,23 +51,26 @@ const Intel = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * index, duration: 0.5 }}
-            className="bg-white/5 border border-white/10 hover:border-[#7100FF]/50 transition-colors p-6 flex flex-col h-full group relative overflow-hidden"
+            className="bg-white/5 border border-white/10 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.15)] hover:bg-white/10 transition-all duration-300 p-6 flex flex-col h-full group relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+            {/* Subtle glow effect behind item on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#7100FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#7100FF]"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><polyline points="14 2 14 8 20 8"/><path d="M2 15h10"/><path d="m9 18 3-3-3-3"/></svg>
             </div>
             <div className="flex items-center gap-2 mb-4 relative z-10">
-              <span className="text-[#10B981] font-mono text-xs uppercase tracking-widest bg-[#10B981]/10 px-2 py-1">Transmission</span>
-              <span className="text-gray-500 font-mono text-xs">{item.time}</span>
+              <span className="text-[#10B981] font-mono text-xs uppercase tracking-widest bg-[#10B981]/10 border border-[#10B981]/20 px-2 py-1">Transmission</span>
+              <span className="text-gray-500 font-mono text-xs group-hover:text-gray-400 transition-colors">{item.time}</span>
             </div>
-            <h2 className="text-2xl font-bold mb-4 line-clamp-2 group-hover:text-[#7100FF] transition-colors relative z-10">{item.title}</h2>
-            <p className="text-gray-400 font-mono text-sm mb-6 flex-grow line-clamp-3 relative z-10">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 line-clamp-2 group-hover:text-[#7100FF] transition-colors relative z-10">{item.title}</h2>
+            <p className="text-gray-400 group-hover:text-gray-300 font-mono text-sm mb-6 flex-grow line-clamp-3 relative z-10 transition-colors">
               {item.content}
             </p>
-            <div className="flex items-center justify-between border-t border-white/10 pt-4 mt-auto relative z-10">
-              <span className="font-mono text-xs text-[#7100FF]">{item.author}</span>
-              <button aria-label="Decrypt and read full transmission" className="text-sm font-mono uppercase tracking-widest hover:text-[#7100FF] transition-colors flex items-center gap-1 cursor-pointer">
-                Decrypt <span aria-hidden="true">-&gt;</span>
+            <div className="flex items-center justify-between border-t border-white/10 group-hover:border-white/20 pt-4 mt-auto relative z-10 transition-colors">
+              <span className="font-mono text-xs text-[#7100FF] bg-[#7100FF]/10 px-2 py-1">{item.author}</span>
+              <button aria-label="Decrypt and read full transmission" className="text-sm font-mono uppercase tracking-widest hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+                Decrypt <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">-&gt;</span>
               </button>
             </div>
           </motion.article>
