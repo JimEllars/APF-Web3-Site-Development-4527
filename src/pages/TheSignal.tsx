@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const TheSignal = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -17,11 +20,22 @@ const TheSignal = () => {
       <div className="max-w-3xl">
         <div className="bg-white/5 border border-white/10 p-8 mb-8">
           <div className="flex items-center gap-4 mb-6">
-            <button aria-label="Play Latest Transmission" className="w-16 h-16 bg-[#7100FF] flex items-center justify-center rounded-full animate-[pulse_3s_ease-in-out_infinite] hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505]">
-               <span className="font-black text-2xl ml-1" aria-hidden="true">►</span>
+            <button
+              onClick={() => setIsPlaying(!isPlaying)}
+              aria-label={isPlaying ? "Pause Latest Transmission" : "Play Latest Transmission"}
+              className={`w-16 h-16 bg-[#7100FF] flex items-center justify-center rounded-full ${isPlaying ? 'animate-none scale-95' : 'animate-[pulse_3s_ease-in-out_infinite] hover:scale-105'} transition-transform focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505] cursor-pointer`}
+            >
+               <span className="font-black text-2xl ml-1" aria-hidden="true">{isPlaying ? '||' : '►'}</span>
             </button>
             <div>
-              <p className="text-[#10B981] font-mono text-xs uppercase tracking-widest mb-1">Latest Transmission</p>
+              <p className="text-[#10B981] font-mono text-xs uppercase tracking-widest mb-1 flex items-center gap-2">
+                {isPlaying ? (
+                  <>
+                    <span className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse" />
+                    Receiving Signal...
+                  </>
+                ) : 'Latest Transmission'}
+              </p>
               <h2 className="text-2xl font-bold">Episode 42: The Sovereign Web</h2>
             </div>
           </div>

@@ -23,7 +23,7 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#7100FF] selection:text-white flex flex-col w-full max-w-[100vw] overflow-x-hidden">
+    <div className="min-h-screen bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#7100FF] selection:text-white flex flex-col w-full overflow-x-hidden">
       {/* Scanline Overlay */}
       <div className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.3] mix-blend-overlay"
            style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5) 51%)', backgroundSize: '100% 4px' }} />
@@ -98,7 +98,7 @@ const MainLayout = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="relative flex-grow w-full max-w-[100vw] overflow-x-hidden">
+      <main className="relative flex-grow w-full overflow-x-hidden">
         <Outlet />
       </main>
 

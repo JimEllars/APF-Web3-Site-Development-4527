@@ -24,7 +24,7 @@ const MusterRoll = () => {
         });
         setIsEnlisted(true);
       } catch (error) {
-        console.error("Transmission Failed: Error writing to registry.", error);
+        console.error("Transmission Failed: Registry sync error.", error);
       }
     }
   };
@@ -72,7 +72,7 @@ const MusterRoll = () => {
                 <span className="w-12 h-12 bg-[#10B981] rounded-full mx-auto mb-4 flex items-center justify-center">
                    <span className="text-[#050505] text-xl" aria-hidden="true">✓</span>
                 </span>
-                <h3 className="text-xl font-bold text-[#10B981] mb-2">Enlistment Successful</h3>
+                <h3 className="text-xl font-bold text-[#10B981] mb-2">Signal Received: Enlistment Successful</h3>
                 <p className="font-mono text-gray-400 text-sm">Welcome to the Federation, {alias}.</p>
                 <div className="mt-4 p-3 bg-black/50 border border-white/5 font-mono text-xs text-gray-500 break-all">
                   {account.address}

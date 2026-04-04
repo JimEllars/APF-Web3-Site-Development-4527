@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { PirateText } from '../components/PirateText';
+import { Link } from 'react-router-dom';
 
 const Bridge = () => {
   return (
@@ -49,13 +50,13 @@ const Bridge = () => {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center pt-8"
           >
-            <button aria-label="Enlist Now" className="px-8 py-4 bg-[#7100FF] hover:bg-[#5a00cc] text-white font-mono uppercase tracking-widest text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+            <Link to="/muster-roll" aria-label="Enlist Now" className="px-8 py-4 bg-[#7100FF] hover:bg-[#5a00cc] text-white font-mono uppercase tracking-widest text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
               <span className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse" aria-hidden="true" />
               Enlist Now
-            </button>
-            <button aria-label="Read Manifesto" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-mono uppercase tracking-widest text-sm transition-colors cursor-pointer">
+            </Link>
+            <Link to="/intel" aria-label="Read Manifesto" className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-mono uppercase tracking-widest text-sm transition-colors cursor-pointer flex items-center justify-center">
               Read Manifesto
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
