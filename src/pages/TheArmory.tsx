@@ -1,12 +1,25 @@
 import { motion } from 'framer-motion';
 
 const TheArmory = () => {
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      animate="visible"
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      variants={{
+        hidden: { opacity: 0 },
+        visible: {
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.1,
+          },
+        },
+      }}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8">
@@ -23,11 +36,11 @@ const TheArmory = () => {
         ].map((item, index) => (
           <motion.button
             key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1 * index, duration: 0.5 }}
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             aria-label={`View ${item.name}`}
-            className="group cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505] p-4 bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 rounded-none relative overflow-hidden"
+            className="group cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505] p-4 bg-[#050505] border border-white/10 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.15)] hover:bg-white/5 transition-all duration-300 rounded-none relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-[#7100FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             <div className="aspect-square bg-[#050505] border border-white/5 flex items-center justify-center mb-4 group-hover:border-[#7100FF]/50 transition-colors relative overflow-hidden">

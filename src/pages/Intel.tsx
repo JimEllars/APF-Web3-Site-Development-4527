@@ -23,12 +23,27 @@ const Intel = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      animate="visible"
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      variants={containerVariants}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8 flex justify-between items-end flex-wrap gap-4">
@@ -48,10 +63,8 @@ const Intel = () => {
         {newsItems.map((item, index) => (
           <motion.article
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * index, duration: 0.5 }}
-            className="bg-white/5 border border-white/10 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.15)] hover:bg-white/10 transition-all duration-300 p-6 flex flex-col h-full group relative overflow-hidden"
+            variants={itemVariants}
+            className="bg-[#050505] border border-white/10 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.15)] hover:bg-white/5 transition-all duration-300 p-6 flex flex-col h-full group relative overflow-hidden"
           >
             {/* Subtle glow effect behind item on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#7100FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

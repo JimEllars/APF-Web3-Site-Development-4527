@@ -43,7 +43,7 @@ const MusterPoints = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
-            className="group relative bg-white/5 border border-white/10 p-6 flex flex-col sm:flex-row gap-6 hover:border-white/30 hover:shadow-[0_0_20px_rgba(113,0,255,0.1)] transition-all duration-300 overflow-hidden"
+            className="group relative bg-[#050505] border border-white/10 p-6 flex flex-col sm:flex-row gap-6 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.1)] hover:bg-white/5 transition-all duration-300 overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#7100FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             <div className="bg-[#7100FF]/10 text-[#7100FF] w-20 h-20 flex flex-col items-center justify-center flex-shrink-0 border border-[#7100FF]/20 group-hover:border-[#7100FF]/50 group-hover:bg-[#7100FF]/20 transition-colors relative z-10" aria-hidden="true">

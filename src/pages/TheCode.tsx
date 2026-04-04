@@ -1,12 +1,27 @@
 import { motion } from 'framer-motion';
 
 const TheCode = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      animate="visible"
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      variants={containerVariants}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8">
@@ -22,10 +37,8 @@ const TheCode = () => {
         ].map((policy, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 * i, duration: 0.5 }}
-            className="group relative bg-white/5 border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/10 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_30px_rgba(113,0,255,0.15)] overflow-hidden"
+            variants={itemVariants}
+            className="group relative bg-[#050505] border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/5 transition-all duration-300 hover:border-[#7100FF]/50 hover:shadow-[0_0_30px_rgba(113,0,255,0.15)] overflow-hidden"
           >
             {/* Subtle glow effect behind item on hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#7100FF]/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none" />
