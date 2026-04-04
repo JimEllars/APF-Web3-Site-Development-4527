@@ -2,6 +2,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { PirateText } from './PirateText';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const MainLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,27 +75,35 @@ const MainLayout = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-white/10 bg-[#050505]">
-            <div className="px-2 pt-2 pb-3 space-y-1 font-mono text-sm">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  aria-label={`Navigate to ${item.name}`}
-                  className={`${
-                    isActive(item.href)
-                      ? 'bg-[#7100FF]/10 text-[#7100FF] border-l-4 border-[#7100FF]'
-                      : 'text-gray-300 hover:bg-white/5 hover:text-white border-l-4 border-transparent'
-                  } block px-3 py-2 uppercase tracking-widest`}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden border-t border-white/10 bg-[#050505] overflow-hidden"
+            >
+              <div className="px-2 pt-2 pb-3 space-y-1 font-mono text-sm">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-label={`Navigate to ${item.name}`}
+                    className={`${
+                      isActive(item.href)
+                        ? 'bg-[#7100FF]/10 text-[#7100FF] border-l-4 border-[#7100FF]'
+                        : 'text-gray-300 hover:bg-white/5 hover:text-white border-l-4 border-transparent'
+                    } block px-3 py-2 uppercase tracking-widest transition-colors duration-200`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* Main Content */}
