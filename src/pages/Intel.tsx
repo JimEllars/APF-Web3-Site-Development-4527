@@ -82,7 +82,7 @@ const Intel = () => {
             </p>
             <div className="flex items-center justify-between border-t border-white/10 group-hover:border-white/20 pt-4 mt-auto relative z-10 transition-colors">
               <span className="font-mono text-xs text-[#7100FF] bg-[#7100FF]/10 px-2 py-1">{item.author}</span>
-              <button aria-label={`Decrypt and read full transmission: ${item.title}`} className="text-sm font-mono uppercase tracking-widest hover:text-white transition-colors flex items-center gap-1 cursor-pointer focus:outline-none focus:text-[#7100FF]">
+              <button aria-label={`Decrypt and read full transmission: ${item.title}`} className="text-sm font-mono uppercase tracking-widest hover:text-white transition-colors flex items-center gap-1 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#7100FF] p-1 rounded-sm">
                 Decrypt <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">-&gt;</span>
               </button>
             </div>
