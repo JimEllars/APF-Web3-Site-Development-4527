@@ -9,9 +9,9 @@ const Bridge = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden"
+      className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden w-full w-[100vw] left-[50%] right-[50%] ml-[-50vw] mr-[-50vw]"
     >
-      <div className="absolute inset-0 z-0 bg-grid-parallax opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-grid-parallax opacity-20 pointer-events-none md:bg-[length:40px_40px] bg-[length:20px_20px]" />
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
