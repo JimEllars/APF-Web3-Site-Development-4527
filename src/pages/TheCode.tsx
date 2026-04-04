@@ -47,7 +47,7 @@ const TheCode = () => {
                 <div className="font-mono text-xl text-[#7100FF]">{policy.votes}</div>
                 <div className="font-mono text-xs text-gray-500 uppercase">Power (QV)</div>
               </div>
-              <button aria-label={`View or vote on ${policy.title}`} className="px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF] text-[#7100FF] hover:text-white border border-[#7100FF]/30 hover:border-[#7100FF] font-mono uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer whitespace-nowrap">
+              <button aria-label={policy.status === 'Active' ? `Cast Vote on ${policy.title}` : `View details for ${policy.title}`} className="px-6 py-3 bg-[#7100FF]/10 hover:bg-[#7100FF] text-[#7100FF] hover:text-white border border-[#7100FF]/30 hover:border-[#7100FF] font-mono uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505]">
                 {policy.status === 'Active' ? 'Cast Vote' : 'View Detail'}
               </button>
             </div>

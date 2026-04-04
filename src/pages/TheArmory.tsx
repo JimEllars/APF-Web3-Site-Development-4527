@@ -30,12 +30,12 @@ const TheArmory = () => {
             className="group cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505] p-4 bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 rounded-none relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-[#7100FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-            <div className="aspect-square bg-[#050505] border border-white/5 flex items-center justify-center mb-4 group-hover:border-[#7100FF]/50 transition-colors relative overflow-hidden" aria-hidden="true">
-               <div className="font-mono text-gray-600 uppercase tracking-widest text-sm relative z-10 group-hover:text-gray-400 transition-colors">Item_{index + 1}</div>
+            <div className="aspect-square bg-[#050505] border border-white/5 flex items-center justify-center mb-4 group-hover:border-[#7100FF]/50 transition-colors relative overflow-hidden">
+               <div className="font-mono text-gray-600 uppercase tracking-widest text-sm relative z-10 group-hover:text-gray-400 transition-colors" aria-hidden="true">Item_{index + 1}</div>
 
                {/* Status Badge */}
                <div className="absolute top-2 right-2 bg-black/80 px-2 py-1 border border-white/10 z-20 shadow-md">
-                 <span className={`font-mono text-[10px] uppercase tracking-widest ${item.status === 'In Stock' ? 'text-[#10B981]' : item.status === 'Pre-order' ? 'text-yellow-500' : 'text-[#7100FF]'}`}>
+                 <span className={`font-mono text-[10px] uppercase tracking-widest ${item.status === 'In Stock' ? 'text-[#10B981]' : item.status === 'Pre-order' ? 'text-yellow-500' : 'text-[#7100FF]'}`} aria-label={`Status: ${item.status}`}>
                    {item.status}
                  </span>
                </div>
