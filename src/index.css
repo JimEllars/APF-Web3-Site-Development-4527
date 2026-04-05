@@ -20,7 +20,7 @@ body {
 .bg-grid-parallax {
   background-image: radial-gradient(var(--color-federation-purple) 1px, transparent 1px);
   background-size: 40px 40px;
-  transform: translate3d(0, 0, 0);
+  transform: translateZ(0); /* Hardware acceleration */
   will-change: transform;
   backface-visibility: hidden;
   perspective: 1000px;
@@ -29,6 +29,7 @@ body {
 @media (max-width: 768px) {
   .bg-grid-parallax {
     background-size: 20px 20px;
-    background-attachment: scroll;
+    background-attachment: scroll; /* Fallback for mobile */
+    will-change: auto; /* Prevent frame-drops on mobile */
   }
 }

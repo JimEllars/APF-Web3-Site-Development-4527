@@ -57,9 +57,9 @@ const TheArmory = () => {
             </div>
             <div className="relative z-10">
               <h3 className="font-bold text-lg mb-1 group-hover:text-[#7100FF] transition-colors line-clamp-1">{item.name}</h3>
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-[#7100FF] text-sm bg-[#7100FF]/10 px-2 py-0.5">{item.priceEth} ETH</span>
-                <span className="font-mono text-gray-500 text-xs">/ ${item.priceUsd}</span>
+              <div className="flex items-center gap-2 mt-2">
+                <span className="font-mono text-[#7100FF] text-sm bg-[#7100FF]/10 border border-[#7100FF]/20 px-2 py-0.5 shadow-[0_0_10px_rgba(113,0,255,0.2)]">{item.priceEth} ETH</span>
+                <span className="font-mono text-gray-500 text-xs line-through opacity-70">${item.priceUsd}</span>
               </div>
             </div>
           </motion.button>

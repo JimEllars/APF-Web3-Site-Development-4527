@@ -51,10 +51,14 @@ const MusterPoints = () => {
               <span className="font-mono">{10 + i}</span>
             </div>
             <div className="relative z-10 flex flex-col justify-center">
-              <h3 className="text-xl font-bold mb-2 group-hover:text-[#7100FF] transition-colors">Cascadia Guild Assembly</h3>
-              <p className="text-gray-400 group-hover:text-gray-300 font-mono text-sm mb-4 transition-colors">Sector 4 // Seattle, WA</p>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-[#7100FF] transition-colors">
+                {index === 0 ? "Cascadia Guild Assembly" : "Liberty Guild Assembly"}
+              </h3>
+              <p className="text-gray-400 group-hover:text-gray-300 font-mono text-sm mb-4 transition-colors">
+                {index === 0 ? "Sector 4 // Seattle, WA" : "Sector 1 // New York, NY"}
+              </p>
               <button aria-label={`View Details for ${index === 0 ? "Cascadia" : "Liberty"} Guild Assembly`} className="text-sm font-mono text-[#7100FF] uppercase tracking-widest hover:text-white transition-colors flex items-center gap-1 cursor-pointer w-fit focus:outline-none focus:text-white focus:ring-2 focus:ring-[#7100FF] p-1 rounded-sm">
-                View Details <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">-&gt;</span>
+                Decrypt Coordinates <span aria-hidden="true" className="group-hover:translate-x-1 transition-transform">-&gt;</span>
               </button>
             </div>
           </motion.div>
