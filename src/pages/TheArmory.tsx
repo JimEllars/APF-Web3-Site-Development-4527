@@ -35,7 +35,7 @@ const TheArmory = () => {
           { name: 'APF Genesis NFT', priceEth: '0.50', priceUsd: '1150', status: 'Minting Live' },
         ].map((item, index) => (
           <motion.button
-            key={index}
+            key={item.name}
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
