@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, doc } from 'firebase/firestore';
+import { getFirestore, collection, doc, Firestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -12,19 +12,15 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-import { Firestore } from 'firebase/firestore';
-
 // Initialize Firebase - wrap in try/catch to not crash if dummy keys are used or blocked by adblockers in dev
-let app;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let db: Firestore | any;
+let db: Firestore;
+
 try {
-  app = initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
 } catch (e) {
   console.error("Firebase initialization failed. Using mock instance for development.", e);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  db = {} as any; // Mock db
+  db = {} as Firestore; // Mock db
 }
 
 export { db };
