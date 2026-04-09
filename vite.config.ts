@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  // @ts-ignore
+  // @ts-expect-error - vitest plugin typing conflict
   test: {
     globals: true,
     environment: 'jsdom',
