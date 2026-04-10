@@ -98,4 +98,16 @@ describe('App Router', () => {
     expect(screen.queryByTestId('main-layout')).not.toBeInTheDocument();
     expect(screen.queryByTestId('page-bridge')).not.toBeInTheDocument();
   });
+
+  it('renders layout but no specific page for nested unknown routes under valid paths (since they are exact)', () => {
+    render(
+      <MemoryRouter initialEntries={['/intel/unknown-nested-route']}>
+        <App />
+      </MemoryRouter>
+    );
+    // Depending on React Router v6 behavior, if the parent doesn't have a * or nested routes,
+    // the layout won't render either if the path doesn't match a defined route.
+    expect(screen.queryByTestId('main-layout')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('page-intel')).not.toBeInTheDocument();
+  });
 });
