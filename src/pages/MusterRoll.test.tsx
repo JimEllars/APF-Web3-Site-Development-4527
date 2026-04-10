@@ -5,8 +5,7 @@ import MusterRoll from './MusterRoll';
 // Mock framer-motion
 vi.mock('framer-motion', () => ({
   motion: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    div: ({ children, className, ...props }: any) => {
+    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { initial, animate, exit, variants, transition, ...rest } = props;
       return <div className={className} {...rest}>{children}</div>;
@@ -29,8 +28,7 @@ vi.mock('../lib/thirdwebClient', () => ({
 // Mock firebase firestore
 const mockSetDoc = vi.fn();
 vi.mock('firebase/firestore', () => ({
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setDoc: (...args: any[]) => mockSetDoc(...args),
+  setDoc: (...args: unknown[]) => mockSetDoc(...args),
 }));
 
 // Mock firebase lib
