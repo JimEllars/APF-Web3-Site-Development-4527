@@ -5,8 +5,7 @@ import TheCode from './TheCode';
 // Mock framer-motion to avoid animation issues in tests
 vi.mock('framer-motion', () => ({
   motion: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    div: ({ children, className, ...props }: any) => {
+    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => {
       // Filter out framer-motion specific props
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { initial, animate, exit, variants, ...rest } = props;
