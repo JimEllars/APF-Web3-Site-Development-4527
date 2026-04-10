@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import TheArmory from './TheArmory';
 
@@ -39,5 +39,17 @@ describe('TheArmory', () => {
 
     const mintingLiveBadge = screen.getByLabelText('Status: Minting Live');
     expect(mintingLiveBadge).toBeInTheDocument();
+  });
+
+  it('verifies that items can be focused and clicked (though actual action not yet implemented)', () => {
+    render(<TheArmory />);
+
+    const firstItem = screen.getByRole('button', { name: 'View Federation Hoodie' });
+
+    // Simulate interaction to verify it doesn't crash
+    firstItem.focus();
+    expect(firstItem).toHaveFocus();
+
+    fireEvent.click(firstItem);
   });
 });
