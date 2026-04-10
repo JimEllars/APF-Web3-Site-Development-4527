@@ -33,6 +33,11 @@ describe('Intel Component', () => {
     expect(screen.getByText('Decentralized Identifiers (DIDs) Integration Complete')).toBeInTheDocument();
     expect(screen.getByText('Guild Muster: East Coast Division')).toBeInTheDocument();
 
+    // Check for news item contents
+    expect(screen.getByText(/The APF has officially initiated the first phase of our core network rollout/i)).toBeInTheDocument();
+    expect(screen.getByText(/Members can now register their DIDs to the Federation Ledger/i)).toBeInTheDocument();
+    expect(screen.getByText(/All available operatives in Sector 1 are requested to muster/i)).toBeInTheDocument();
+
     // Check for authors
     expect(screen.getByText('@GhostProtocol')).toBeInTheDocument();
     expect(screen.getByText('@CipherPunk')).toBeInTheDocument();
@@ -43,8 +48,17 @@ describe('Intel Component', () => {
     expect(screen.getByText('T-24H')).toBeInTheDocument();
     expect(screen.getByText('T-48H')).toBeInTheDocument();
 
-    // Check that all 3 decrypt buttons are present
+    // Check for accessibility and correctness of elements
+    const articles = screen.getAllByRole('article');
+    expect(articles).toHaveLength(3);
+
+    expect(articles[0]).toHaveAttribute('aria-label', 'News article: Operation Data Sovereignty Launched');
+    expect(articles[1]).toHaveAttribute('aria-label', 'News article: Decentralized Identifiers (DIDs) Integration Complete');
+    expect(articles[2]).toHaveAttribute('aria-label', 'News article: Guild Muster: East Coast Division');
+
+    // Check that all 3 decrypt buttons are present and have specific labels
     const decryptButtons = screen.getAllByRole('button', { name: /Decrypt and read full transmission/i });
     expect(decryptButtons).toHaveLength(3);
+    expect(decryptButtons[0]).toHaveAttribute('aria-label', 'Decrypt and read full transmission: Operation Data Sovereignty Launched');
   });
 });
