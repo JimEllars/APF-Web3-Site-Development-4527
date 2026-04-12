@@ -39,7 +39,9 @@ describe('Firebase Initialization', () => {
       'Firebase initialization failed. Using mock instance for development.',
       expect.any(Error)
     );
-    expect(db).toEqual({});
+    expect(db.type).toEqual('firestore');
+    expect(db.app.name).toEqual('[DEFAULT]');
+    expect(db.app.automaticDataCollectionEnabled).toEqual(false);
 
     consoleSpy.mockRestore();
   });
@@ -64,7 +66,9 @@ describe('Firebase Initialization', () => {
       'Firebase initialization failed. Using mock instance for development.',
       expect.any(Error)
     );
-    expect(db).toEqual({});
+    expect(db.type).toEqual('firestore');
+    expect(db.app.name).toEqual('[DEFAULT]');
+    expect(db.app.automaticDataCollectionEnabled).toEqual(false);
 
     consoleSpy.mockRestore();
   });
@@ -75,8 +79,8 @@ describe('Firebase Initialization', () => {
     }));
     vi.doMock('firebase/firestore', () => ({
       getFirestore: vi.fn().mockReturnValue({ type: 'mockDb' }),
-      collection: vi.fn((db, ...path) => path.join('/')),
-      doc: vi.fn((db, ...path) => path.join('/')),
+      collection: vi.fn((_db, ...path) => path.join('/')),
+      doc: vi.fn((_db, ...path) => path.join('/')),
     }));
 
     const { paths } = await import('./firebase');

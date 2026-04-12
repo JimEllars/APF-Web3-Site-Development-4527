@@ -21,7 +21,17 @@ try {
   db = getFirestore(app);
 } catch (e) {
   console.error("Firebase initialization failed. Using mock instance for development.", e);
-  db = {} as Firestore; // Mock db
+  db = {
+    type: 'firestore',
+    get app() {
+      return {
+        name: '[DEFAULT]',
+        options: firebaseConfig,
+        automaticDataCollectionEnabled: false
+      };
+    },
+    toJSON: () => ({})
+  };
   isMocked = true;
 }
 
