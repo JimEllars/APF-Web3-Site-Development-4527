@@ -84,4 +84,27 @@ describe('Firebase Initialization', () => {
     expect(paths.public.news).toBe('artifacts/apf/public/data/news');
     expect(paths.user('test-user').profile).toBe('artifacts/apf/users/test-user/profile/data');
   });
+
+  it('should expose isFirebaseConfigured correctly', async () => {
+    vi.doMock('firebase/app', () => ({
+      initializeApp: vi.fn().mockReturnValue({ name: 'mockApp' }),
+    }));
+    vi.doMock('firebase/firestore', () => ({
+      getFirestore: vi.fn().mockReturnValue({ type: 'mockDb' }),
+      collection: vi.fn(),
+      doc: vi.fn(),
+    }));
+
+    // Test with mock failure to ensure it is false
+    vi.doMock('firebase/app', () => ({
+      initializeApp: vi.fn().mockImplementation(() => {
+        throw new Error('Mock error');
+      }),
+    }));
+
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const { isFirebaseConfigured } = await import('./firebase');
+    expect(isFirebaseConfigured).toBe(false);
+    consoleSpy.mockRestore();
+  });
 });

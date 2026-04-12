@@ -3,7 +3,7 @@ import { ConnectButton, useActiveAccount } from 'thirdweb/react';
 import { client } from '../lib/thirdwebClient';
 import { useState } from 'react';
 import { setDoc } from 'firebase/firestore';
-import { paths } from '../lib/firebase';
+import { paths, isFirebaseConfigured } from '../lib/firebase';
 
 const MusterRoll = () => {
   const account = useActiveAccount();
@@ -15,18 +15,22 @@ const MusterRoll = () => {
     e.preventDefault();
     if (alias && account) {
       try {
-        await setDoc(paths.user(account.address).profile, {
-          alias,
-          ens_name: ens,
-          wallet_address: account.address,
-          enlistment_date: new Date().toISOString(),
-          rank: 'Initiate'
-        });
+        if (isFirebaseConfigured) {
+          await setDoc(paths.user(account.address).profile, {
+            alias,
+            ens_name: ens,
+            wallet_address: account.address,
+            enlistment_date: new Date().toISOString(),
+            rank: 'Initiate'
+          });
+        } else {
+          console.warn("Transmission Bypassed: Firebase is not configured.");
+        }
         setIsEnlisted(true);
       } catch (error) {
         console.error("Transmission Failed: Registry sync error.", error);
-        // Fallback to update state anyway since the db might be a mock
-        setIsEnlisted(true);
+        // We do not fallback to update state here.
+        // If it throws, we should not pretend the transmission was successful.
       }
     }
   };

@@ -14,6 +14,7 @@ const firebaseConfig = {
 
 // Initialize Firebase - wrap in try/catch to not crash if dummy keys are used or blocked by adblockers in dev
 let db: Firestore;
+let isMocked = false;
 
 try {
   const app = initializeApp(firebaseConfig);
@@ -21,7 +22,10 @@ try {
 } catch (e) {
   console.error("Firebase initialization failed. Using mock instance for development.", e);
   db = {} as Firestore; // Mock db
+  isMocked = true;
 }
+
+export const isFirebaseConfigured = !isMocked && Boolean(firebaseConfig.projectId);
 
 export { db };
 
