@@ -37,7 +37,8 @@ vi.mock('../lib/firebase', () => ({
     user: (address: string) => ({
       profile: `mock_path_for_${address}`,
     })
-  }
+  },
+  isFirebaseConfigured: true,
 }));
 
 describe('MusterRoll Component', () => {
@@ -83,7 +84,7 @@ describe('MusterRoll Component', () => {
     expect(screen.getByText('Welcome to the Federation, TestAlias.')).toBeInTheDocument();
   });
 
-  it('handles enlistment error by falling back to enlisted state', async () => {
+  it('handles enlistment error without falling back to enlisted state', async () => {
     mockUseActiveAccount.mockReturnValue({ address: '0x123abc' });
     mockSetDoc.mockRejectedValueOnce(new Error('Mock DB Error'));
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
@@ -100,9 +101,39 @@ describe('MusterRoll Component', () => {
       expect(consoleSpy).toHaveBeenCalledWith("Transmission Failed: Registry sync error.", expect.any(Error));
     });
 
-    // Once enlisted (via fallback), it should display the success message
-    expect(screen.getByText('Signal Received: Link Stable')).toBeInTheDocument();
+    // It should not display the success message on failure
+    expect(screen.queryByText('Signal Received: Link Stable')).not.toBeInTheDocument();
 
     consoleSpy.mockRestore();
+  });
+
+  it('bypasses enlistment transmission when Firebase is not configured', async () => {
+    // Override the mock for this specific test
+    vi.mocked(await import('../lib/firebase')).isFirebaseConfigured = false;
+
+    mockUseActiveAccount.mockReturnValue({ address: '0x123abc' });
+    const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    render(<MusterRoll />);
+
+    const aliasInput = screen.getByLabelText('Sovereign Alias *');
+    const submitButton = screen.getByText('Confirm Enlistment');
+
+    fireEvent.change(aliasInput, { target: { value: 'TestAliasUnconfigured' } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(consoleWarnSpy).toHaveBeenCalledWith("Transmission Bypassed: Firebase is not configured.");
+    });
+
+    // setDoc should not have been called
+    expect(mockSetDoc).not.toHaveBeenCalled();
+
+    // It should display the success message due to bypass
+    expect(screen.getByText('Signal Received: Link Stable')).toBeInTheDocument();
+
+    consoleWarnSpy.mockRestore();
+    // Restore the mock back to true for other tests
+    vi.mocked(await import('../lib/firebase')).isFirebaseConfigured = true;
   });
 });
