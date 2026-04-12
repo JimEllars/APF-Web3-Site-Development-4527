@@ -1,5 +1,11 @@
 import { motion } from 'framer-motion';
 
+const POLICIES = [
+  { id: '100', status: 'Active', title: 'Consumer Data Sovereignty Act', votes: 1240 },
+  { id: '101', status: 'Drafting', title: 'Open Source Initiative Funding', votes: 0 },
+  { id: '102', status: 'Passed', title: 'Federation Charter v1.2', votes: 4502 }
+];
+
 const TheCode = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -30,11 +36,7 @@ const TheCode = () => {
       </div>
 
       <div className="space-y-6">
-        {[
-          { id: '100', status: 'Active', title: 'Consumer Data Sovereignty Act', votes: 1240 },
-          { id: '101', status: 'Drafting', title: 'Open Source Initiative Funding', votes: 0 },
-          { id: '102', status: 'Passed', title: 'Federation Charter v1.2', votes: 4502 }
-        ].map((policy) => (
+        {POLICIES.map((policy) => (
           <motion.div
             key={policy.id}
             variants={itemVariants}
