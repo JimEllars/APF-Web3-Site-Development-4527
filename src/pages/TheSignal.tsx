@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+const ARCHIVES = [
+  { id: 'ep41', i: 1, title: 'Episode 41: Data is Labor', aired: '1 weeks ago', duration: '45:00', episodeNum: 41 },
+  { id: 'ep40', i: 2, title: 'Episode 40: Data is Labor', aired: '2 weeks ago', duration: '45:00', episodeNum: 40 },
+  { id: 'ep39', i: 3, title: 'Episode 39: Data is Labor', aired: '3 weeks ago', duration: '45:00', episodeNum: 39 },
+];
+
 const TheSignal = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -51,13 +57,13 @@ const TheSignal = () => {
 
         <h3 className="font-mono text-xl text-gray-300 uppercase tracking-widest mb-6">Archives</h3>
         <div className="space-y-4">
-          {[1, 2, 3].map((i, index) => (
+          {ARCHIVES.map((archive, index) => (
             <motion.button
-              key={i}
+              key={archive.id}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
-              aria-label={`Play Episode ${42 - i}: Data is Labor`}
+              aria-label={`Play Episode ${archive.episodeNum}: Data is Labor`}
               className="w-full text-left flex items-center gap-4 p-4 bg-[#050505] border border-white/10 hover:border-[#7100FF]/50 hover:bg-white/5 transition-all duration-300 cursor-pointer group focus:outline-none focus:border-[#7100FF] relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#7100FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -65,10 +71,10 @@ const TheSignal = () => {
                 <span className="text-gray-500 font-mono text-sm group-hover:text-[#7100FF] transition-colors ml-1" aria-hidden="true">►</span>
               </div>
               <div className="flex-grow relative z-10">
-                <h4 className="font-bold group-hover:text-[#7100FF] transition-colors text-lg">Episode {42 - i}: Data is Labor</h4>
-                <p className="text-gray-500 group-hover:text-gray-400 font-mono text-xs transition-colors mt-1">Aired: {i} weeks ago</p>
+                <h4 className="font-bold group-hover:text-[#7100FF] transition-colors text-lg">{archive.title}</h4>
+                <p className="text-gray-500 group-hover:text-gray-400 font-mono text-xs transition-colors mt-1">Aired: {archive.aired}</p>
               </div>
-              <span className="font-mono text-sm text-gray-400 group-hover:text-white transition-colors relative z-10 bg-white/5 px-2 py-1 border border-white/10">45:00</span>
+              <span className="font-mono text-sm text-gray-400 group-hover:text-white transition-colors relative z-10 bg-white/5 px-2 py-1 border border-white/10">{archive.duration}</span>
             </motion.button>
           ))}
         </div>
