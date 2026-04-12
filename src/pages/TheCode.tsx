@@ -31,12 +31,12 @@ const TheCode = () => {
 
       <div className="space-y-6">
         {[
-          { status: 'Active', title: 'Consumer Data Sovereignty Act', votes: 1240 },
-          { status: 'Drafting', title: 'Open Source Initiative Funding', votes: 0 },
-          { status: 'Passed', title: 'Federation Charter v1.2', votes: 4502 }
-        ].map((policy, i) => (
+          { id: '100', status: 'Active', title: 'Consumer Data Sovereignty Act', votes: 1240 },
+          { id: '101', status: 'Drafting', title: 'Open Source Initiative Funding', votes: 0 },
+          { id: '102', status: 'Passed', title: 'Federation Charter v1.2', votes: 4502 }
+        ].map((policy) => (
           <motion.div
-            key={i}
+            key={policy.id}
             variants={itemVariants}
             className="group relative bg-[#050505] border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-white/5 transition-all duration-300 hover:border-[#7100FF]/50 hover:shadow-[0_0_30px_rgba(113,0,255,0.15)] overflow-hidden"
           >
@@ -52,7 +52,7 @@ const TheCode = () => {
                 <span className="font-mono text-xs uppercase tracking-widest text-gray-400 group-hover:text-gray-300 transition-colors">{policy.status}</span>
               </div>
               <h2 className="text-xl md:text-2xl font-bold group-hover:text-[#7100FF] transition-colors duration-300">{policy.title}</h2>
-              <p className="text-gray-400 font-mono text-sm mt-2">Proposal ID: APF-2026-{100 + i}</p>
+              <p className="text-gray-400 font-mono text-sm mt-2">Proposal ID: APF-2026-{policy.id}</p>
             </div>
 
             <div className="flex items-center gap-6 w-full md:w-auto border-t md:border-t-0 border-white/10 pt-4 md:pt-0 relative z-10 justify-between md:justify-end">
