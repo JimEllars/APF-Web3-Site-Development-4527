@@ -42,6 +42,8 @@ describe('Firebase Initialization', () => {
     expect(db.type).toEqual('firestore');
     expect(db.app.name).toEqual('[DEFAULT]');
     expect(db.app.automaticDataCollectionEnabled).toEqual(false);
+    expect(db.app.options).toEqual(expect.any(Object));
+    expect(db.toJSON()).toEqual({});
 
     consoleSpy.mockRestore();
   });
@@ -69,6 +71,8 @@ describe('Firebase Initialization', () => {
     expect(db.type).toEqual('firestore');
     expect(db.app.name).toEqual('[DEFAULT]');
     expect(db.app.automaticDataCollectionEnabled).toEqual(false);
+    expect(db.app.options).toEqual(expect.any(Object));
+    expect(db.toJSON()).toEqual({});
 
     consoleSpy.mockRestore();
   });
