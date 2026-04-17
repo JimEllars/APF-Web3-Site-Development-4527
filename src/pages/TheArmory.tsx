@@ -1,10 +1,18 @@
 import { motion } from 'framer-motion';
 
+const ITEM_VARIANTS = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const ARMORY_ITEMS = [
+  { name: 'Federation Hoodie', priceEth: '0.05', priceUsd: '120', status: 'In Stock' },
+  { name: 'Sovereign Node Case', priceEth: '0.12', priceUsd: '280', status: 'Pre-order' },
+  { name: 'Data Laborer Tee', priceEth: '0.02', priceUsd: '45', status: 'In Stock' },
+  { name: 'APF Genesis NFT', priceEth: '0.50', priceUsd: '1150', status: 'Minting Live' },
+];
+
 const TheArmory = () => {
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
 
   return (
     <motion.div
@@ -28,15 +36,10 @@ const TheArmory = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[
-          { name: 'Federation Hoodie', priceEth: '0.05', priceUsd: '120', status: 'In Stock' },
-          { name: 'Sovereign Node Case', priceEth: '0.12', priceUsd: '280', status: 'Pre-order' },
-          { name: 'Data Laborer Tee', priceEth: '0.02', priceUsd: '45', status: 'In Stock' },
-          { name: 'APF Genesis NFT', priceEth: '0.50', priceUsd: '1150', status: 'Minting Live' },
-        ].map((item, index) => (
+        {ARMORY_ITEMS.map((item, index) => (
           <motion.button
             key={item.name}
-            variants={itemVariants}
+            variants={ITEM_VARIANTS}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             aria-label={`View ${item.name}`}
