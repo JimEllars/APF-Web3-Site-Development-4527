@@ -28,7 +28,7 @@ const MusterRoll = () => {
         }
         setIsEnlisted(true);
       } catch (error) {
-        console.error("Transmission Failed: Registry sync error.", error);
+        console.error("Transmission Failed: Registry sync error.");
         // We do not fallback to update state here.
         // If it throws, we should not pretend the transmission was successful.
       }
