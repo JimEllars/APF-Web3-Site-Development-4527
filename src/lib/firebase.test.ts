@@ -36,8 +36,7 @@ describe('Firebase Initialization', () => {
     const { db } = await import('./firebase');
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      'Firebase initialization failed. Using mock instance for development.',
-      expect.any(Error)
+      'Firebase initialization failed. Using mock instance for development.'
     );
     expect(db.type).toEqual('firestore');
     expect(db.app.name).toEqual('[DEFAULT]');
@@ -65,8 +64,7 @@ describe('Firebase Initialization', () => {
     const { db } = await import('./firebase');
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      'Firebase initialization failed. Using mock instance for development.',
-      expect.any(Error)
+      'Firebase initialization failed. Using mock instance for development.'
     );
     expect(db.type).toEqual('firestore');
     expect(db.app.name).toEqual('[DEFAULT]');
