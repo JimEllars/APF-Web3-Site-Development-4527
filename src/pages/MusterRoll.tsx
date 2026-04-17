@@ -23,7 +23,7 @@ const MusterRoll = () => {
             enlistment_date: new Date().toISOString(),
             rank: 'Initiate'
           });
-        } else {
+        } else if (import.meta.env.DEV) {
           console.warn("Transmission Bypassed: Firebase is not configured.");
         }
         setIsEnlisted(true);
