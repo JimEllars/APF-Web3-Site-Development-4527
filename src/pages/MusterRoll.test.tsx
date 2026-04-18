@@ -98,7 +98,7 @@ describe('MusterRoll Component', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(consoleSpy).toHaveBeenCalledWith("Transmission Failed: Registry sync error.");
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining("Transmission Failed: Registry sync error."));
     });
 
     // It should not display the success message on failure

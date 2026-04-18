@@ -20,7 +20,7 @@ try {
   const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
 } catch (e) {
-  console.error("Firebase initialization failed. Using mock instance for development.");
+  console.error(`Firebase initialization failed. Using mock instance for development. ${e instanceof Error ? e.message : ''}`);
   db = {
     type: 'firestore',
     get app() {
