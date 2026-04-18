@@ -10,9 +10,17 @@ const MusterRoll = () => {
   const [alias, setAlias] = useState('');
   const [ens, setEns] = useState('');
   const [isEnlisted, setIsEnlisted] = useState(false);
+  const [ensError, setEnsError] = useState('');
 
   const handleEnlist = async (e: React.FormEvent) => {
     e.preventDefault();
+    setEnsError('');
+
+    if (ens && !/^[a-zA-Z0-9.]+$/.test(ens)) {
+      setEnsError('Invalid ENS name format. Only alphanumeric characters and dots are allowed.');
+      return;
+    }
+
     if (alias && account) {
       try {
         if (isFirebaseConfigured) {
@@ -109,6 +117,7 @@ const MusterRoll = () => {
                     className="w-full bg-black/50 border border-white/10 p-3 font-mono text-white focus:outline-none focus:border-[#7100FF] focus:ring-1 focus:ring-[#7100FF] transition-colors"
                     placeholder="e.g. ghost.eth"
                   />
+                  {ensError && <p className="text-red-500 font-mono text-xs mt-2">{ensError}</p>}
                 </div>
                 <button
                   type="submit"
