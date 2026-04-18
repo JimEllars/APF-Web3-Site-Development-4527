@@ -4,19 +4,19 @@ import { useState } from 'react';
 import { PirateText } from './PirateText';
 import { AnimatePresence, motion } from 'framer-motion';
 
+const NAVIGATION = [
+  { name: 'The Bridge', href: '/' },
+  { name: 'Pirate News', href: '/intel' },
+  { name: 'Policies', href: '/the-code' },
+  { name: 'Events', href: '/muster-points' },
+  { name: 'Podcast', href: '/the-signal' },
+  { name: 'Shop', href: '/the-armory' },
+  { name: 'Muster Roll', href: '/muster-roll' },
+];
+
 const MainLayout = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-
-  const navigation = [
-    { name: 'The Bridge', href: '/' },
-    { name: 'Pirate News', href: '/intel' },
-    { name: 'Policies', href: '/the-code' },
-    { name: 'Events', href: '/muster-points' },
-    { name: 'Podcast', href: '/the-signal' },
-    { name: 'Shop', href: '/the-armory' },
-    { name: 'Muster Roll', href: '/muster-roll' },
-  ];
 
   const isActive = (path: string) => {
     if (path === '/' && location.pathname !== '/') return false;
@@ -44,7 +44,7 @@ const MainLayout = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex md:items-center md:space-x-8 font-mono text-sm">
-              {navigation.map((item) => (
+              {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
@@ -85,7 +85,7 @@ const MainLayout = () => {
               className="md:hidden border-t border-white/10 bg-[#050505] overflow-hidden"
             >
               <div className="px-2 pt-2 pb-3 space-y-1 font-mono text-sm">
-                {navigation.map((item) => (
+                {NAVIGATION.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
