@@ -1,43 +1,43 @@
 import { motion } from 'framer-motion';
 import { PirateText } from '../components/PirateText';
 
+const newsItems = [
+  {
+    title: 'Operation Data Sovereignty Launched',
+    content: 'The APF has officially initiated the first phase of our core network rollout. All guild masters are required to sync their nodes...',
+    author: '@GhostProtocol',
+    time: 'T-12H',
+  },
+  {
+    title: 'Decentralized Identifiers (DIDs) Integration Complete',
+    content: 'Members can now register their DIDs to the Federation Ledger. Ensure your vault is securely backed up before initiating the process.',
+    author: '@CipherPunk',
+    time: 'T-24H',
+  },
+  {
+    title: 'Guild Muster: East Coast Division',
+    content: 'All available operatives in Sector 1 are requested to muster. Coordinates will be broadcast on secure channels 1 hour prior to the event.',
+    author: '@NeonSamurai',
+    time: 'T-48H',
+  }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const Intel = () => {
-  const newsItems = [
-    {
-      title: 'Operation Data Sovereignty Launched',
-      content: 'The APF has officially initiated the first phase of our core network rollout. All guild masters are required to sync their nodes...',
-      author: '@GhostProtocol',
-      time: 'T-12H',
-    },
-    {
-      title: 'Decentralized Identifiers (DIDs) Integration Complete',
-      content: 'Members can now register their DIDs to the Federation Ledger. Ensure your vault is securely backed up before initiating the process.',
-      author: '@CipherPunk',
-      time: 'T-24H',
-    },
-    {
-      title: 'Guild Muster: East Coast Division',
-      content: 'All available operatives in Sector 1 are requested to muster. Coordinates will be broadcast on secure channels 1 hour prior to the event.',
-      author: '@NeonSamurai',
-      time: 'T-48H',
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
   return (
     <motion.div
       initial="hidden"
