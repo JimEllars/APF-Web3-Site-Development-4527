@@ -12,22 +12,27 @@ const ARMORY_ITEMS = [
   { name: 'APF Genesis NFT', priceEth: '0.50', priceUsd: '1150', status: 'Minting Live' },
 ];
 
+const exitVariant = { opacity: 0 };
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+const hoverVariant = { scale: 1.02 };
+const tapVariant = { scale: 0.98 };
+
 const TheArmory = () => {
 
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      exit={{ opacity: 0 }}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.1,
-          },
-        },
-      }}
+      exit={exitVariant}
+      variants={containerVariants}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8">
@@ -40,8 +45,8 @@ const TheArmory = () => {
           <motion.button
             key={item.name}
             variants={ITEM_VARIANTS}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={hoverVariant}
+            whileTap={tapVariant}
             aria-label={`View ${item.name}`}
             className="group cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-[#7100FF] focus:ring-offset-2 focus:ring-offset-[#050505] p-4 bg-[#050505] border border-white/10 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.15)] hover:bg-white/5 transition-all duration-300 rounded-none relative overflow-hidden"
           >

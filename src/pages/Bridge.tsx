@@ -2,43 +2,58 @@ import { motion } from 'framer-motion';
 import { PirateText } from '../components/PirateText';
 import { Link } from 'react-router-dom';
 
+const initialVariant = { opacity: 0, y: 20 };
+const animateVariant = { opacity: 1, y: 0 };
+const exitVariant = { opacity: 0 };
+const transitionMain = { duration: 0.5 };
+
+const initialScaleVariant = { scale: 0.8, opacity: 0 };
+const animateScaleVariant = { scale: 1, opacity: 1 };
+const transitionScale = { duration: 1.5, ease: "easeOut" as const };
+
+const transitionDelay02 = { delay: 0.2, duration: 0.5 };
+const transitionDelay03 = { delay: 0.3, duration: 0.5 };
+const transitionDelay04 = { delay: 0.4, duration: 0.5 };
+const transitionDelay05 = { delay: 0.5, duration: 0.5 };
+
+
 const Bridge = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={initialVariant}
+      animate={animateVariant}
+      exit={exitVariant}
+      transition={transitionMain}
       className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden w-full max-w-[100vw]"
     >
       {/* Breakout element for the parallax background */}
       <div className="absolute top-0 bottom-0 left-[50%] right-[50%] ml-[-50vw] mr-[-50vw] w-[100vw] z-0 bg-grid-parallax opacity-20 pointer-events-none md:bg-[length:40px_40px] bg-[length:20px_20px]" />
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        initial={initialScaleVariant}
+        animate={animateScaleVariant}
+        transition={transitionScale}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#7100FF]/20 rounded-full blur-[100px] md:blur-[120px] pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          initial={initialVariant}
+          animate={animateVariant}
+          transition={transitionDelay02}
           className="text-center space-y-8"
         >
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            initial={initialVariant}
+            animate={animateVariant}
+            transition={transitionDelay03}
             className="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none"
           >
             The New <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7100FF] to-[#10B981]">Paradigm</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            initial={initialVariant}
+            animate={animateVariant}
+            transition={transitionDelay04}
             className="max-w-2xl mx-auto text-lg md:text-xl font-mono text-gray-400 flex flex-wrap justify-center items-center gap-x-2"
           >
             <span>Reclaiming digital sovereignty. The American</span>
@@ -46,9 +61,9 @@ const Bridge = () => {
             <span>Foundation is building the decentralized future.</span>
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            initial={initialVariant}
+            animate={animateVariant}
+            transition={transitionDelay05}
             className="flex flex-col sm:flex-row gap-4 justify-center pt-8"
           >
             <Link to="/muster-roll" aria-label="Enlist Now" className="px-8 py-4 bg-[#7100FF] hover:bg-[#5a00cc] text-white font-mono uppercase tracking-widest text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">

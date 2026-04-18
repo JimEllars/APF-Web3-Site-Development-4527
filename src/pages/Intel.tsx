@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { PirateText } from '../components/PirateText';
 
-const newsItems = [
+const NEWS_ITEMS = [
   {
     title: 'Operation Data Sovereignty Launched',
     content: 'The APF has officially initiated the first phase of our core network rollout. All guild masters are required to sync their nodes...',
@@ -37,12 +37,14 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
+const exitVariant = { opacity: 0 };
+
 const Intel = () => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      exit={{ opacity: 0 }}
+      exit={exitVariant}
       variants={containerVariants}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
@@ -60,7 +62,7 @@ const Intel = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {newsItems.map((item, index) => (
+        {NEWS_ITEMS.map((item, index) => (
           <motion.article
             key={index}
             variants={itemVariants}

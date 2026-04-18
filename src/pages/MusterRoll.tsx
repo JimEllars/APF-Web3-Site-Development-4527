@@ -5,6 +5,16 @@ import { useState } from 'react';
 import { setDoc } from 'firebase/firestore';
 import { paths, isFirebaseConfigured } from '../lib/firebase';
 
+const initialVariant = { opacity: 0, y: 20 };
+const animateVariant = { opacity: 1, y: 0 };
+const exitVariant = { opacity: 0 };
+const transitionMain = { duration: 0.5 };
+
+const appMetadata = {
+  name: "American Pirate Foundation",
+  url: "https://apf.org",
+};
+
 const MusterRoll = () => {
   const account = useActiveAccount();
   const [alias, setAlias] = useState('');
@@ -53,10 +63,10 @@ const MusterRoll = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={initialVariant}
+      animate={animateVariant}
+      exit={exitVariant}
+      transition={transitionMain}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8">
@@ -75,10 +85,7 @@ const MusterRoll = () => {
             <div className="flex justify-center mb-8">
               <ConnectButton
                 client={client}
-                appMetadata={{
-                  name: "American Pirate Foundation",
-                  url: "https://apf.org",
-                }}
+                appMetadata={appMetadata}
               />
             </div>
           </>

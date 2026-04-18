@@ -7,15 +7,23 @@ const ARCHIVES = [
   { id: 'ep39', i: 3, title: 'Episode 39: Data is Labor', aired: '3 weeks ago', duration: '45:00', episodeNum: 39 },
 ];
 
+const initialVariant = { opacity: 0, y: 20 };
+const animateVariant = { opacity: 1, y: 0 };
+const exitVariant = { opacity: 0 };
+const transitionMain = { duration: 0.5 };
+
+const listInitialVariant = { opacity: 0, x: -20 };
+const listAnimateVariant = { opacity: 1, x: 0 };
+
 const TheSignal = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={initialVariant}
+      animate={animateVariant}
+      exit={exitVariant}
+      transition={transitionMain}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8">
@@ -60,8 +68,8 @@ const TheSignal = () => {
           {ARCHIVES.map((archive, index) => (
             <motion.button
               key={archive.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={listInitialVariant}
+              animate={listAnimateVariant}
               transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
               aria-label={`Play Episode ${archive.episodeNum}: Data is Labor`}
               className="w-full text-left flex items-center gap-4 p-4 bg-[#050505] border border-white/10 hover:border-[#7100FF]/50 hover:bg-white/5 transition-all duration-300 cursor-pointer group focus:outline-none focus:border-[#7100FF] relative overflow-hidden"

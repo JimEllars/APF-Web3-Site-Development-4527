@@ -1,12 +1,25 @@
 import { motion } from 'framer-motion';
 
+const initialVariant = { opacity: 0, y: 20 };
+const animateVariant = { opacity: 1, y: 0 };
+const exitVariant = { opacity: 0 };
+const transitionMain = { duration: 0.5 };
+
+const backgroundStyle = { backgroundImage: 'radial-gradient(#7100FF 1px, transparent 1px)', backgroundSize: '20px 20px', transform: 'translateZ(0)' };
+const scanlineAnimate = { top: ['0%', '100%', '0%'] };
+const scanlineTransition = { duration: 4, repeat: Infinity, ease: "linear" as const };
+const markerAnimate = { opacity: [1, 0.5, 1] };
+const markerTransition = { duration: 2, repeat: Infinity };
+
+const GUILDS = [1, 2];
+
 const MusterPoints = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={initialVariant}
+      animate={animateVariant}
+      exit={exitVariant}
+      transition={transitionMain}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="mb-12 border-b border-white/10 pb-8">
@@ -16,17 +29,17 @@ const MusterPoints = () => {
 
       <div className="bg-white/5 border border-white/10 h-[400px] flex items-center justify-center mb-12 relative overflow-hidden" role="img" aria-label="Interactive map showing regional muster points">
         <div className="absolute inset-0 opacity-20"
-             style={{ backgroundImage: 'radial-gradient(#7100FF 1px, transparent 1px)', backgroundSize: '20px 20px', transform: 'translateZ(0)' }}></div>
+             style={backgroundStyle}></div>
         {/* Animated scanning line */}
         <motion.div
-          animate={{ top: ['0%', '100%', '0%'] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          animate={scanlineAnimate}
+          transition={scanlineTransition}
           className="absolute left-0 right-0 h-[2px] bg-[#10B981]/50 shadow-[0_0_10px_#10B981] z-0"
         />
         <div className="text-center relative z-10 bg-[#050505]/80 backdrop-blur-sm p-6 border border-white/10">
           <motion.div
-            animate={{ opacity: [1, 0.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={markerAnimate}
+            transition={markerTransition}
             className="w-12 h-12 border-2 border-[#10B981] rounded-full mx-auto mb-4 flex items-center justify-center"
           >
             <div className="w-2 h-2 bg-[#10B981] rounded-full animate-ping" />
@@ -37,11 +50,11 @@ const MusterPoints = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {[1, 2].map((i, index) => (
+        {GUILDS.map((i, index) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={initialVariant}
+            animate={animateVariant}
             transition={{ delay: 0.2 + (0.1 * index), duration: 0.5 }}
             className="group relative bg-[#050505] border border-white/10 p-6 flex flex-col sm:flex-row gap-6 hover:border-[#7100FF]/50 hover:shadow-[0_0_20px_rgba(113,0,255,0.1)] hover:bg-white/5 transition-all duration-300 overflow-hidden"
           >
