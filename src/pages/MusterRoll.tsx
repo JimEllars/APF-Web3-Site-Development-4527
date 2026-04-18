@@ -24,11 +24,12 @@ const MusterRoll = () => {
             rank: 'Initiate'
           });
         } else if (import.meta.env.DEV) {
+          // Bypassed in dev to prevent production warnings
           console.warn("Transmission Bypassed: Firebase is not configured.");
         }
         setIsEnlisted(true);
       } catch (error) {
-        console.error("Transmission Failed: Registry sync error.");
+        console.error(`Transmission Failed: Registry sync error. ${error instanceof Error ? error.message : ''}`);
         // We do not fallback to update state here.
         // If it throws, we should not pretend the transmission was successful.
       }
