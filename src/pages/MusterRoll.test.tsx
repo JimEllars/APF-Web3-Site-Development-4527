@@ -2,16 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import MusterRoll from './MusterRoll';
 
-// Mock framer-motion
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, variants, transition, ...rest } = props;
-      return <div className={className} {...rest}>{children}</div>;
-    },
-  },
-}));
 
 // Mock thirdweb react
 const mockUseActiveAccount = vi.fn();

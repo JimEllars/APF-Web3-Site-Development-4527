@@ -1,18 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import MusterPoints from './MusterPoints';
 
-// Mock framer-motion to avoid animation issues in tests
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, variants, transition, ...rest } = props;
-      return <div className={className} {...rest}>{children}</div>;
-    },
-  },
-}));
 
 describe('MusterPoints', () => {
   it('renders main headings and subtitle', () => {
