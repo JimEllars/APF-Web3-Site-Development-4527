@@ -28,22 +28,25 @@ const MusterRoll = () => {
     setEnsError('');
     setAliasError('');
 
-    if (!alias || alias.length < 3 || alias.length > 32 || !/^[a-zA-Z0-9_.-]+$/.test(alias)) {
+    const trimmedAlias = alias.trim();
+    const trimmedEns = ens.trim();
+
+    if (!trimmedAlias || trimmedAlias.length < 3 || trimmedAlias.length > 32 || !/^[a-zA-Z0-9_.-]+$/.test(trimmedAlias)) {
       setAliasError('Alias must be 3-32 characters long and contain only alphanumeric characters, dots, dashes, and underscores.');
       return;
     }
 
-    if (ens && !/^[a-zA-Z0-9.]+$/.test(ens)) {
+    if (trimmedEns && !/^[a-zA-Z0-9.]+$/.test(trimmedEns)) {
       setEnsError('Invalid ENS name format. Only alphanumeric characters and dots are allowed.');
       return;
     }
 
-    if (alias && account) {
+    if (trimmedAlias && account) {
       try {
         if (isFirebaseConfigured) {
           await setDoc(paths.user(account.address).profile, {
-            alias,
-            ens_name: ens,
+            alias: trimmedAlias,
+            ens_name: trimmedEns,
             wallet_address: account.address,
             enlistment_date: new Date().toISOString(),
             rank: 'Initiate'
