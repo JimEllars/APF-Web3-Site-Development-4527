@@ -1,18 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { vi, describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import TheCode from './TheCode';
 
-// Mock framer-motion to avoid animation issues in tests
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => {
-      // Filter out framer-motion specific props
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, variants, ...rest } = props;
-      return <div className={className} {...rest}>{children}</div>;
-    },
-  },
-}));
 
 describe('TheCode Component', () => {
   it('renders the header correctly', () => {

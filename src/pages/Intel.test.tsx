@@ -1,23 +1,7 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Intel from './Intel';
 
-// Mock framer-motion to avoid animation issues in tests
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement> & Record<string, unknown>) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, variants, transition, ...rest } = props;
-      return <div className={className} {...rest}>{children}</div>;
-    },
-    article: ({ children, className, ...props }: React.HTMLAttributes<HTMLElement> & Record<string, unknown>) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, variants, transition, ...rest } = props;
-      return <article className={className} {...rest}>{children}</article>;
-    },
-  },
-}));
 
 // Mock PirateText to simplify testing and avoid any internal complexities of that component
 vi.mock('../components/PirateText', () => ({
