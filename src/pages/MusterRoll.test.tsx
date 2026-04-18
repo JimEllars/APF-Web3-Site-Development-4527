@@ -74,6 +74,27 @@ describe('MusterRoll Component', () => {
     expect(screen.getByText('Welcome to the Federation, TestAlias.')).toBeInTheDocument();
   });
 
+
+  it('displays an error for invalid ENS name and prevents submission', async () => {
+    mockUseActiveAccount.mockReturnValue({ address: '0x123abc' });
+    render(<MusterRoll />);
+
+    const aliasInput = screen.getByLabelText('Sovereign Alias *');
+    const ensInput = screen.getByLabelText('ENS Name (Optional)');
+    const submitButton = screen.getByText('Confirm Enlistment');
+
+    fireEvent.change(aliasInput, { target: { value: 'TestAlias' } });
+    fireEvent.change(ensInput, { target: { value: 'invalid_ens_!@#' } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Invalid ENS name format. Only alphanumeric characters and dots are allowed.')).toBeInTheDocument();
+    });
+
+    expect(mockSetDoc).not.toHaveBeenCalled();
+    expect(screen.queryByText('Signal Received: Link Stable')).not.toBeInTheDocument();
+  });
+
   it('handles enlistment error without falling back to enlisted state', async () => {
     mockUseActiveAccount.mockReturnValue({ address: '0x123abc' });
     mockSetDoc.mockRejectedValueOnce(new Error('Mock DB Error'));
