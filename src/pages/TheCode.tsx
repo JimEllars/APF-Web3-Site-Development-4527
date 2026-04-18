@@ -6,27 +6,29 @@ const POLICIES = [
   { id: '102', status: 'Passed', title: 'Federation Charter v1.2', votes: 4502 }
 ];
 
-const TheCode = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
     },
-  };
+  },
+};
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
-  };
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+};
 
+const exitVariant = { opacity: 0 };
+
+const TheCode = () => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      exit={{ opacity: 0 }}
+      exit={exitVariant}
       variants={containerVariants}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
