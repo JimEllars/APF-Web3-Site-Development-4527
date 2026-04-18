@@ -75,6 +75,35 @@ describe('MusterRoll Component', () => {
   });
 
 
+  it('displays an error for invalid alias and prevents submission', async () => {
+    mockUseActiveAccount.mockReturnValue({ address: '0x123abc' });
+    render(<MusterRoll />);
+
+    const aliasInput = screen.getByLabelText('Sovereign Alias *');
+    const submitButton = screen.getByText('Confirm Enlistment');
+
+    // Test alias too short
+    fireEvent.change(aliasInput, { target: { value: 'ab' } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Alias must be 3-32 characters long and contain only alphanumeric characters, dots, dashes, and underscores.')).toBeInTheDocument();
+    });
+
+    expect(mockSetDoc).not.toHaveBeenCalled();
+
+    // Test alias with invalid characters
+    fireEvent.change(aliasInput, { target: { value: 'Invalid Alias!' } });
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Alias must be 3-32 characters long and contain only alphanumeric characters, dots, dashes, and underscores.')).toBeInTheDocument();
+    });
+
+    expect(mockSetDoc).not.toHaveBeenCalled();
+    expect(screen.queryByText('Signal Received: Link Stable')).not.toBeInTheDocument();
+  });
+
   it('displays an error for invalid ENS name and prevents submission', async () => {
     mockUseActiveAccount.mockReturnValue({ address: '0x123abc' });
     render(<MusterRoll />);

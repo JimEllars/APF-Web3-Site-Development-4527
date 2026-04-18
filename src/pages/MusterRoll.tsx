@@ -11,10 +11,17 @@ const MusterRoll = () => {
   const [ens, setEns] = useState('');
   const [isEnlisted, setIsEnlisted] = useState(false);
   const [ensError, setEnsError] = useState('');
+  const [aliasError, setAliasError] = useState('');
 
   const handleEnlist = async (e: React.FormEvent) => {
     e.preventDefault();
     setEnsError('');
+    setAliasError('');
+
+    if (!alias || alias.length < 3 || alias.length > 32 || !/^[a-zA-Z0-9_.-]+$/.test(alias)) {
+      setAliasError('Alias must be 3-32 characters long and contain only alphanumeric characters, dots, dashes, and underscores.');
+      return;
+    }
 
     if (ens && !/^[a-zA-Z0-9.]+$/.test(ens)) {
       setEnsError('Invalid ENS name format. Only alphanumeric characters and dots are allowed.');
@@ -106,6 +113,7 @@ const MusterRoll = () => {
                     className="w-full bg-black/50 border border-white/10 p-3 font-mono text-white focus:outline-none focus:border-[#7100FF] focus:ring-1 focus:ring-[#7100FF] transition-colors"
                     placeholder="e.g. GhostProtocol"
                   />
+                  {aliasError && <p className="text-red-500 font-mono text-xs mt-2">{aliasError}</p>}
                 </div>
                 <div>
                   <label htmlFor="ens" className="block font-mono text-xs uppercase tracking-widest text-gray-400 mb-2">ENS Name (Optional)</label>
